@@ -1,4 +1,4 @@
-package com.github.callmewaggs.stockanalyzer
+package com.github.callmewaggs
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
