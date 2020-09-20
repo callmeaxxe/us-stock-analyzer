@@ -1,20 +1,22 @@
 package com.github.callmewaggs.stockanalyzer
 
+import com.github.callmewaggs.stockanalyzer.model.yahoo.YahooStockFetcher
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.http.HttpStatus
 import org.springframework.web.client.RestTemplate
 
-internal class ApiAdapterTest {
+internal class YahooStockFetcherTest {
 
-    private var apiAdapter: ApiAdapter = ApiAdapter(RestTemplate())
+    private var yahooStockFetcher: YahooStockFetcher = YahooStockFetcher(RestTemplate())
 
     @Test
     fun getHistoricalData_success() {
         // Arrange
         val validSymbol = "GOOG"
+
         // Act
-        val actual = apiAdapter.getHistoricalData(validSymbol)
+        val actual = yahooStockFetcher.getHistoricalData(validSymbol)
 
         // Assert
         assertEquals(HttpStatus.OK, actual.statusCode)
@@ -27,7 +29,7 @@ internal class ApiAdapterTest {
         // Arrange
         val nonExistSymbol = "nonexistsymbol"
         // Act
-        val actual = apiAdapter.getHistoricalData(nonExistSymbol)
+        val actual = yahooStockFetcher.getHistoricalData(nonExistSymbol)
 
         // Assert
         assertEquals(HttpStatus.OK, actual.statusCode)

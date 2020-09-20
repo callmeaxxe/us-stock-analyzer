@@ -1,6 +1,6 @@
-package com.github.callmewaggs.stockanalyzer.dto
+package com.github.callmewaggs.stockanalyzer.model.yahoo
 
-class PriceDTO {
+class YahooHistoricalDataPriceDTO {
     lateinit var date: String
     lateinit var open: String
     lateinit var high: String

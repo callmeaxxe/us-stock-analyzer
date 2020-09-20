@@ -1,19 +1,19 @@
-package com.github.callmewaggs.stockanalyzer
+package com.github.callmewaggs.stockanalyzer.model.yahoo
 
-import com.github.callmewaggs.stockanalyzer.dto.ApiResponse
+import com.github.callmewaggs.stockanalyzer.model.StockFetcher
 import org.springframework.http.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
 
 @Service
-class ApiAdapter(val restTemplate: RestTemplate) {
+class YahooStockFetcher(private val restTemplate: RestTemplate) : StockFetcher {
 
-    fun getHistoricalData(symbol: String): ResponseEntity<ApiResponse> {
+    fun getHistoricalData(symbol: String): ResponseEntity<YahooHistoricalDataResponse> {
         val url = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?region=US&symbol=$symbol"
         val httpHeaders = getHeaders()
         val request: HttpEntity<String> = HttpEntity(httpHeaders)
-        return restTemplate.exchange(url, HttpMethod.GET, request, ApiResponse::class.java)
+        return restTemplate.exchange(url, HttpMethod.GET, request, YahooHistoricalDataResponse::class.java)
     }
 
     private fun getHeaders(): HttpHeaders {
