@@ -1,23 +1,35 @@
 package com.github.callmewaggs.stockanalyzer.controller
 
+import com.github.callmewaggs.stockanalyzer.model.MaxProfitForm
+import com.github.callmewaggs.stockanalyzer.model.StockService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
-class StockController {
+class StockController(private val stockService: StockService) {
+
     @GetMapping("/")
-    fun getIndexView(model: Model): String {
-        val maxProfit = null
-        model.addAttribute("maxProfit", maxProfit)
-        return "index"
+    fun viewIndex(model: Model): String {
+        return getIndexView(model, MaxProfitForm())
     }
 
     @GetMapping("/stock/{symbol}")
-    fun getMaxProfit(@PathVariable symbol: String, model: Model): String {
-        model.addAttribute("symbol", symbol)
-        model.addAttribute("maxProfit", 10)
+    fun viewIndexWithMaxProfit(@PathVariable symbol: String, model: Model): String {
+        val maxProfit = stockService.getMaxProfit(symbol)
+        val maxProfitForm = MaxProfitForm(
+                maxProfit.symbol,
+                maxProfit.buyDate.toString(),
+                maxProfit.sellDate.toString(),
+                maxProfit.profit.toString()
+        )
+        return getIndexView(model, maxProfitForm)
+    }
+
+    private fun getIndexView(model: Model, maxProfitForm: MaxProfitForm): String {
+        model.addAttribute("maxProfitForm", maxProfitForm)
         return "index"
     }
+
 }

@@ -36,7 +36,7 @@
         Calculate Max Profit over the last 180 days
     </div>
     <div class="row justify-content-center">
-        <form class="needs-validation col-sm-6" onSubmit="return false;">
+        <form class="needs-validation col-sm-6" onSubmit="return false;" th:object="${maxProfitForm}">
             <div class="form-group">
                 <label for="symbol">Symbol</label>
                 <input class="form-control" id="symbol" th:value="*{symbol}" placeholder="Input an US stock symbol(e.g. AAPL, GOOG)" type="text">
@@ -44,12 +44,22 @@
             </div>
 
             <div class="form-group">
-                <label for="maxProfit">Max Profit</label>
-                <input class="form-control" id="maxProfit" th:value="*{maxProfit}">
+                <button class="btn btn-primary btn-block" id="button">Get Max Profit</button>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary btn-block" id="button">Get Max Profit</button>
+                <label for="buyDate">Buy Date</label>
+                <input class="form-control" id="buyDate" th:value="*{buyDate}">
+            </div>
+
+            <div class="form-group">
+                <label for="sellDate">Sell Date</label>
+                <input class="form-control" id="sellDate" th:value="*{sellDate}">
+            </div>
+
+            <div class="form-group">
+                <label for="profit">Max Profit</label>
+                <input class="form-control" id="profit" th:value="*{profit}">
             </div>
         </form>
     </div>
