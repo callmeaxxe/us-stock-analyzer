@@ -4,11 +4,12 @@
 
 US stock symbol(e.g. AAPL, GOOG) 입력시 data(for 180 days) 를 바탕으로 __max profit__ 을 return 하는 analyzer
 
-처음으로 Kotlin 을 사용하여 프로젝트를 진행하여 다소 어색하거나 부족한 표현이 있을 수 있습니다.
-
 ---
 
 ## Requirements
+
+<img width="815" src="https://user-images.githubusercontent.com/35681772/95990266-3e52d100-0e66-11eb-9344-69e8e4a39659.png">
+
  * Algorithm
    - Correctly and efficiently return the max profit
 
